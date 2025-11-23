@@ -106,4 +106,6 @@ document.getElementById("signupForm").addEventListener("submit", function (event
 document.getElementById("signinBtn").addEventListener("click", () => {
     // navigate
     window.location.href = "signin.html"
+
+
 })
