@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+
+<body style="background-image: url(https://wallpapers.com/images/hd/netflix-background-gs7hjuwvv2g0e9fj.jpg);">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-transparent">
+        <div class="container-fluid">
+            <div class="ms-auto me-5 py-3">
+                <button class="nav-signin-btn btn" id="logoutBtn">Log Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center align-items-center">
+
+            <!-- Sign In -->
+            <div class="col-md-6">
+
+                <h4 class="text-center text-light mb-4 fw-bold">
+                    Welcome <span id="wlcName"></span> <br>
+                    Sign in to continue.
+                </h4>
+
+                <form id="signinForm">
+
+                    <!-- Email -->
+                    <div class="mb-1 position-relative">
+                        <i
+                            class="fa-regular fa-envelope position-absolute top-50 translate-middle-y ms-3 text-secondary"></i>
+                        <input type="email" class="form-control bg-transparent text-light ps-5" id="signinEmail"
+                            placeholder="example@gmail.com">
+                    </div>
+                    <div class="text-danger mb-2" id="signinEmailError"></div>
+
+                    <!-- Password -->
+                    <div class="mb-1 position-relative">
+                        <i class="fa-solid fa-key position-absolute top-50 translate-middle-y ms-3 text-secondary"></i>
+                        <input type="password" class="form-control bg-transparent text-light ps-5" id="signinPassword"
+                            placeholder="Enter password">
+                    </div>
+                    <div class="text-danger mb-2" id="signinPasswordError">
+
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn btn-animated w-100">Sign In</button>
+
+                    <p class="text-center text-light mt-2">
+                        New to this platform?
+                        <a href="index.html" class="text-light fw-bold">Sign up now.</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script code-->
+    <script>
+        // Getting stored signup values
+        const storedEmail = sessionStorage.getItem("email")
+        const storedPassword = sessionStorage.getItem("password")
+        const storedName = sessionStorage.getItem("fullname")
+
+        // Update welcome name
+        document.getElementById("wlcName").innerText = storedName ? storedName : "User"
+
+        // Signin form
+        document.getElementById("signinForm").addEventListener("submit", function (e) {
+            e.preventDefault()
+
+            const emailInput = document.getElementById("signinEmail")
+            const passwordInput = document.getElementById("signinPassword")
+
+            const emailError = document.getElementById("signinEmailError")
+            const passwordError = document.getElementById("signinPasswordError")
+
+
+            emailInput.addEventListener("input", () => {
+                if (emailInput.value.trim() !== "") {
+                    emailError.innerText = ""
+                }
+            });
+
+            passwordInput.addEventListener("input", () => {
+                if (passwordInput.value.trim() !== "") {
+                    passwordError.innerText = ""
+                }
+            });
+
+            // Clear previous errors
+            emailError.innerText = ""
+            passwordError.innerText = ""
+
+            let valid = true
+
+            // Empty validation
+            if (emailInput.value.trim() === "") {
+                emailError.innerText = "Email is required"
+                valid = false
+            }
+            if (passwordInput.value.trim() === "") {
+                passwordError.innerText = "Password is required"
+                valid = false
+            }
+
+            if (!valid) {
+                return
+            }
+
+            // Match with stored values
+            if (emailInput.value === storedEmail && passwordInput.value === storedPassword) {
+                alert("Login Successfully!")
+                emailInput.value = ""
+                passwordInput.value = ""
+
+            } else {
+                passwordError.innerText = "Invalid email or password"
+            }
+
+        })
+
+        // Logout
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            sessionStorage.clear();
+            window.location.href = "index.html";
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

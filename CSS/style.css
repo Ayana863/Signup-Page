@@ -1,0 +1,85 @@
+
+
+/*  Container  */
+.container {
+
+     max-width: 800px;
+   
+    border-radius: 25px;
+    padding: 40px;
+     backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.5);
+
+ 
+}
+
+ /* .container {
+  
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+   
+ } */
+/* Make time input transparent */
+
+
+
+
+/* Make all inputs transparent */
+.form-control {
+    background-color: transparent !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* soft white border */
+}
+
+/* Transparent even when typing (focus state) */.form-control:focus {
+    background-color: transparent !important;
+    color: white !important;
+    border-color: white !important;
+    box-shadow: none !important;
+}
+
+/* Placeholder also white */
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+
+/* Button  */
+.btn-animated {
+   background-color: red;
+    color: white;
+
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+.btn-animated:hover{
+    background-color: transparent;
+    border: 2px solid red;
+
+    color: white;
+    
+}
+
+
+p a {
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+.nav-signin-btn{
+    background-color: red;
+    color: aliceblue;
+    font-weight: bold;
+}
+.nav-signin-btn:hover{
+    background-color: transparent;
+    border-color: red;
+    color:aliceblue;
+}
